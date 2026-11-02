@@ -1,0 +1,235 @@
+1
+00:00:00,000 --> 00:00:04,360
+Welcome to Finnie, a financial assistant with four focused agents.
+
+2
+00:00:04,360 --> 00:00:10,465
+Streamlit provides the interface, while LangGraph coordinates routing, validation, specialist execution, and report composition.
+
+3
+00:00:10,465 --> 00:00:14,825
+Each analysis starts with validated inputs and deterministic Python calculations.
+
+4
+00:00:14,825 --> 00:00:21,801
+Only then does it retrieve financial knowledge and ask a language model to explain the results.
+
+5
+00:00:21,801 --> 00:00:24,854
+This keeps arithmetic separate from generated prose.
+
+6
+00:00:24,854 --> 00:00:28,342
+The knowledge base is separate from user data.
+
+7
+00:00:28,342 --> 00:00:36,626
+Chroma retrieves document chunks, optionally filters by category, ranks twenty candidates by vector distance, and selects the top five.
+
+8
+00:00:36,626 --> 00:00:40,115
+These are similarity results, not proof of relevance.
+
+9
+00:00:40,115 --> 00:00:44,475
+Chat has a separate context and only uses library knowledge.
+
+10
+00:00:44,475 --> 00:00:50,579
+Session memory holds temporary reports; explicitly saved inputs belong to a local user profile.
+
+11
+00:00:50,579 --> 00:00:56,248
+Identifying report fields are removed before model calls, while necessary financial values remain.
+
+12
+00:00:56,248 --> 00:00:58,864
+All supported monetary inputs use U.S.
+
+13
+00:00:58,864 --> 00:00:59,300
+dollars.
+
+14
+00:01:00,000 --> 00:01:02,649
+The chat agent specializes in financial education.
+
+15
+00:01:02,649 --> 00:01:06,055
+A user can ask how diversification reduces concentration risk.
+
+16
+00:01:06,055 --> 00:01:11,353
+Finnie retrieves library passages and generates a grounded explanation with document and page citations.
+
+17
+00:01:11,353 --> 00:01:14,759
+Portfolio holdings and goal inputs never become chat context.
+
+18
+00:01:14,759 --> 00:01:19,300
+When evidence is insufficient, the agent abstains instead of inventing an answer.
+
+19
+00:01:20,000 --> 00:01:23,738
+The portfolio agent reads supplied holdings from CSV or Excel.
+
+20
+00:01:23,738 --> 00:01:27,477
+It calculates total value, asset allocation, sector exposure, and concentration.
+
+21
+00:01:27,477 --> 00:01:33,458
+Here, Tech Heavy totals three hundred twenty thousand dollars, and the largest position is thirty percent.
+
+22
+00:01:33,458 --> 00:01:40,188
+Effective holdings are about four point four, calculated as one divided by the sum of squared portfolio weights.
+
+23
+00:01:40,188 --> 00:01:44,300
+Findings describe the holdings and supplied goal, without fetching replacement prices.
+
+24
+00:01:45,000 --> 00:01:48,627
+The market agent fetches historical end-of-day data through Alpha Vantage.
+
+25
+00:01:48,627 --> 00:01:53,342
+It calculates period return, daily changes, annualized volatility, closing-price drawdown, and benchmark differences.
+
+26
+00:01:53,342 --> 00:01:59,870
+Volatility is the sample standard deviation of daily returns multiplied by the square root of two hundred fifty-two.
+
+27
+00:01:59,870 --> 00:02:03,497
+Drawdown measures the largest fall from an earlier closing peak.
+
+28
+00:02:03,497 --> 00:02:09,300
+These describe the selected historical window; they do not predict future losses or explain market news.
+
+29
+00:02:10,000 --> 00:02:13,256
+The goals agent projects savings toward a target and deadline.
+
+30
+00:02:13,256 --> 00:02:19,441
+It converts annual growth and fee assumptions to monthly rates, applies growth and fees, then adds the monthly contribution.
+
+31
+00:02:19,441 --> 00:02:21,720
+Today's-dollar targets are adjusted for assumed inflation.
+
+32
+00:02:21,720 --> 00:02:27,580
+A cent-level binary search calculates the contribution needed to meet the target, with bounded deadline scenarios where allowed.
+
+33
+00:02:27,580 --> 00:02:36,370
+In the house example, fifteen thousand dollars plus nine hundred monthly for thirty-six months reaches forty-seven thousand four hundred, leaving a twelve thousand six hundred dollar shortfall.
+
+34
+00:02:36,370 --> 00:02:39,300
+Users can create multiple goals and analyze each separately.
+
+35
+00:02:40,000 --> 00:02:41,723
+Here is the persistence check.
+
+36
+00:02:41,723 --> 00:02:49,305
+I saved the Tech Heavy holdings and the house-deposit goal to the Finnie Demo profile, then stopped and relaunched the Streamlit server.
+
+37
+00:02:49,305 --> 00:02:55,164
+Selecting that profile still exposes both saved inputs, and they can be restored for a new analysis.
+
+38
+00:02:55,164 --> 00:02:59,300
+Temporary conversations and reports are separate from these explicitly saved local inputs.
+
+39
+00:03:00,000 --> 00:03:02,088
+Finnie handles several failure paths.
+
+40
+00:03:02,088 --> 00:03:09,605
+Invalid holdings or incomplete goals are rejected before calculations; the interface gives friendly guidance without exposing exception codes.
+
+41
+00:03:09,605 --> 00:03:15,451
+Transient market API failures receive at most two retries with exponential backoff and jitter.
+
+42
+00:03:15,451 --> 00:03:22,133
+If fetching still fails, eligible real cached data can be used with source and freshness information.
+
+43
+00:03:22,133 --> 00:03:31,738
+Quote-level dummy defaults exist as a last resort, but the market risk engine does not use dummy history to calculate returns or volatility.
+
+44
+00:03:31,738 --> 00:03:36,749
+If language generation or output validation fails, Finnie attempts one different model.
+
+45
+00:03:36,749 --> 00:03:42,178
+When both attempts fail, analytical agents retain computed results and a local summary.
+
+46
+00:03:42,178 --> 00:03:46,354
+Chat can abstain when a grounded answer cannot be prepared.
+
+47
+00:03:46,354 --> 00:03:47,607
+Refusals are respected.
+
+48
+00:03:47,607 --> 00:03:52,201
+Sanitized local logs record operational events without raw prompts or credentials.
+
+49
+00:03:52,201 --> 00:03:59,300
+These recovery paths are covered by automated tests; the current suite has two hundred twenty-one passing tests.
+
+50
+00:04:00,000 --> 00:04:03,840
+The next improvements should strengthen evidence and financial depth.
+
+51
+00:04:03,840 --> 00:04:13,225
+First, create a labeled retrieval evaluation set and measure precision at k and recall at k, alongside answer citation accuracy and latency.
+
+52
+00:04:13,225 --> 00:04:20,051
+Second, extend portfolio analysis with expense ratios, fund look-through, and historical correlations when reliable inputs exist.
+
+53
+00:04:20,051 --> 00:04:26,024
+Third, add probabilistic goal simulations, retirement withdrawals, pensions, and explicit shared-budget planning across goals.
+
+54
+00:04:26,024 --> 00:04:29,010
+Those would extend today's deterministic accumulation model.
+
+55
+00:04:29,010 --> 00:04:36,689
+Fourth, improve market coverage with adjusted total-return data and additional providers, while keeping source dates and freshness clear.
+
+56
+00:04:36,689 --> 00:04:40,955
+A separate news synthesizer can later explain sourced market events.
+
+57
+00:04:40,955 --> 00:04:46,501
+Finally, production use needs authentication, encrypted storage, stronger privacy review, and operational monitoring.
+
+58
+00:04:46,501 --> 00:04:52,901
+Finnie currently provides an educational prototype: transparent calculations, retrieved financial context, and bounded model explanations.
+
+59
+00:04:52,901 --> 00:04:59,300
+It does not execute trades or guarantee that an investment or savings target will succeed.

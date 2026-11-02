@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+/knowledge_base/index/
+.env
+/runtime/
+.coverage
+htmlcov/
+/static/references/
+/src/ui/static/references/
+.DS_Store
+.env.*
+!.env.example
+.vscode/
+.pytest_cache/
+*.log
+# Generated analyses can contain user financial inputs. Keep only the demo.
+/reports/*
+!/reports/finnie_demo_5min.mp4
+!/reports/finnie_demo_5min.srt
+!/reports/demo/
+/reports/demo/*
+!/reports/demo/README.md
+!/reports/demo/transcript.md

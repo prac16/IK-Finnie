@@ -1,0 +1,32 @@
+{
+  "as_of_date": "2026-11-01",
+  "currency": "USD",
+  "available_savings": 15000,
+  "monthly_budget": 1000,
+  "goals": [
+    {
+      "id": "reserve", "name": "Emergency reserve", "target_amount": 12000,
+      "target_date": "2027-11-01", "target_basis": "future_dollars",
+      "starting_balance": 6000, "monthly_contribution": 300,
+      "annual_return_pct": 0, "annual_inflation_pct": 0, "annual_fee_pct": 0,
+      "risk_tolerance": "low", "priority": 1,
+      "deadline_flexible": false, "target_flexible": false
+    },
+    {
+      "id": "house", "name": "House deposit", "target_amount": 60000,
+      "target_date": "2029-11-01", "target_basis": "today_dollars",
+      "starting_balance": 9000, "monthly_contribution": 500,
+      "annual_return_pct": 3, "annual_inflation_pct": 2, "annual_fee_pct": 0.2,
+      "risk_tolerance": "moderate", "priority": 2,
+      "deadline_flexible": true, "target_flexible": false
+    },
+    {
+      "id": "travel", "name": "Travel fund", "target_amount": 5000,
+      "target_date": "2027-11-01", "target_basis": "future_dollars",
+      "starting_balance": 0, "monthly_contribution": 200,
+      "annual_return_pct": 0, "annual_inflation_pct": 0, "annual_fee_pct": 0,
+      "risk_tolerance": "low", "priority": 3,
+      "deadline_flexible": true, "target_flexible": true
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "description": "Synthetic defaults only. Zero is a placeholder, never a market price. No trading date is assigned.",
+  "default": {"price": "0.00", "change": "0.00", "change_percent": "0.00%"},
+  "tickers": {
+    "AAPL": {"price": "0.00", "change": "0.00", "change_percent": "0.00%"},
+    "MSFT": {"price": "0.00", "change": "0.00", "change_percent": "0.00%"}
+  }
+}

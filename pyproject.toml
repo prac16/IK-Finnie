@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finnie"
+version = "0.1.0"
+description = "Multi-agent financial assistant"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "certifi>=2024.8.30",
+    "chromadb>=0.6.3",
+    "openai>=1.55",
+    "openpyxl>=3.1",
+    "pypdf>=5.1",
+    "pydantic>=2.9",
+    "python-dotenv>=1.0",
+    "langgraph>=1.2.19,<2",
+    "langchain-core>=1.7.3,<2",
+    "streamlit>=1.66.1,<2",
+    "pandas>=2.2,<4",
+]
+
+[project.optional-dependencies]
+dev = ["coverage>=7.6"]
+
+[project.scripts]
+finnie-index-pdfs = "rag.ingest:main"
+finnie-ask = "agents.chat.agent:main"
+finnie-analyze-portfolio = "agents.portfolio.analysis:main"
+finnie-portfolio-upload = "agents.portfolio.upload:main"
+finnie-analyze-market = "agents.market.agent:main"
+finnie-plan-goals = "agents.goals.agent:main"
+finnie-chat = "workflow.cli:main"
+finnie-ui = "ui.launcher:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["agents*", "rag*", "tools*", "workflow*", "ui*"]
+
+[tool.setuptools.package-data]
+tools = ["dummy_quotes.json"]

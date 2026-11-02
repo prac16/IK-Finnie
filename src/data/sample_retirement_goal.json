@@ -1,0 +1,24 @@
+{
+  "as_of_date": "2026-11-01",
+  "currency": "USD",
+  "available_savings": 50000,
+  "monthly_budget": 1500,
+  "goals": [
+    {
+      "id": "retirement",
+      "name": "Retirement nest egg",
+      "target_amount": 500000,
+      "target_date": "2056-11-01",
+      "target_basis": "today_dollars",
+      "starting_balance": 50000,
+      "monthly_contribution": 1000,
+      "annual_return_pct": 5,
+      "annual_inflation_pct": 2.5,
+      "annual_fee_pct": 0.25,
+      "risk_tolerance": "moderate",
+      "priority": 1,
+      "deadline_flexible": true,
+      "target_flexible": false
+    }
+  ]
+}

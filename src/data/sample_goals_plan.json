@@ -1,0 +1,24 @@
+{
+  "as_of_date": "2026-11-01",
+  "currency": "USD",
+  "available_savings": 15000,
+  "monthly_budget": 900,
+  "goals": [
+    {
+      "id": "house",
+      "name": "House deposit",
+      "target_amount": 60000,
+      "target_date": "2029-11-01",
+      "target_basis": "future_dollars",
+      "starting_balance": 15000,
+      "monthly_contribution": 900,
+      "annual_return_pct": 0,
+      "annual_inflation_pct": 0,
+      "annual_fee_pct": 0,
+      "risk_tolerance": "low",
+      "priority": 1,
+      "deadline_flexible": true,
+      "target_flexible": true
+    }
+  ]
+}
